@@ -1,7 +1,8 @@
 package com.santox.crudDEmo.controller;
 
-import com.santox.crudDEmo.dao.StudentDAO;
 import com.santox.crudDEmo.entity.Student;
+import com.santox.crudDEmo.service.StudentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,44 +10,34 @@ import java.util.List;
 @RestController
 public class restController {
 
-    private StudentDAO studentDAO;
+    private StudentService studentService;
 
-    public restController(StudentDAO studentDAO) {
-        this.studentDAO = studentDAO;
+    @Autowired
+    public restController(StudentService studentService) {
+        this.studentService = studentService;
     }
 
     @GetMapping("/students")
     public List<Student> getStudentList(){
-        return studentDAO.findAll();
+        return studentService.findAll();
     }
 
     @GetMapping("/students/{studentId}")
     public Student getStudentById(@PathVariable int studentId){
         //verificar el id en la lista de estudiantes
         isPresenId(studentId);
-        return studentDAO.findById(studentId);
-    }
-
-    @PostMapping("/students")
-    public Student creatMultipleStudents(@RequestBody Student student) {
-       return studentDAO.save(student);
+        return studentService.findById(studentId);
     }
 
     @DeleteMapping("/students/{studentId}")
     public String deleteStudentByStudentId(@PathVariable int studentId){
         isPresenId(studentId);
-        studentDAO.deleteStudent(studentId);
+        studentService.deleteStudent(studentId);
         return "Student deleted";
     }
 
-    private void verificateId(int studentId) {
-        if(studentId >= studentDAO.findAll().size()  || studentId <= 0  ){
-            throw new StudentNotFoundException("Student ID not found: " +studentId);
-        }
-    }
-
     private void isPresenId(int studentId) {
-        List<Student> studentsList = studentDAO.findAll();
+        List<Student> studentsList = studentService.findAll();
         boolean foundStudent = studentsList.stream().anyMatch(student -> student.getId() == studentId);
         if(!foundStudent){
             throw new StudentNotFoundException("Student ID not found: " + studentId);

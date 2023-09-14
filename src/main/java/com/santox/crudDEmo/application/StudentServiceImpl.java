@@ -1,7 +1,8 @@
-package com.santox.crudDEmo.service;
+package com.santox.crudDEmo.application;
 
-import com.santox.crudDEmo.dao.StudentDAO;
-import com.santox.crudDEmo.entity.Student;
+import com.santox.crudDEmo.domain.StudentDAO;
+import com.santox.crudDEmo.domain.StudentService;
+import com.santox.crudDEmo.domain.entity.Student;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,7 +34,6 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public void deleteStudent(int studentId) {
         studentDAO.deleteStudent(studentId);
-
     }
 
     @Override

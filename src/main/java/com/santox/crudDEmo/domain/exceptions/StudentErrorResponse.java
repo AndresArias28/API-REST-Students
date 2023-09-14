@@ -1,4 +1,4 @@
-package com.santox.crudDEmo.controller;
+package com.santox.crudDEmo.domain.exceptions;
 
 public class StudentErrorResponse{
     private int status;

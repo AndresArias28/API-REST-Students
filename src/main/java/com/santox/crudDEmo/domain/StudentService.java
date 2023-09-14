@@ -1,6 +1,6 @@
-package com.santox.crudDEmo.service;
+package com.santox.crudDEmo.domain;
 
-import com.santox.crudDEmo.entity.Student;
+import com.santox.crudDEmo.domain.entity.Student;
 
 import java.util.List;
 

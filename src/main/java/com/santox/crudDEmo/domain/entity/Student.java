@@ -1,4 +1,4 @@
-package com.santox.crudDEmo.entity;
+package com.santox.crudDEmo.domain.entity;
 
 import jakarta.persistence.*;
 import org.springframework.data.annotation.Id;

@@ -1,7 +1,8 @@
-package com.santox.crudDEmo.controller;
+package com.santox.crudDEmo.domain.controller;
 
-import com.santox.crudDEmo.entity.Student;
-import com.santox.crudDEmo.service.StudentService;
+import com.santox.crudDEmo.domain.entity.Student;
+import com.santox.crudDEmo.domain.StudentService;
+import com.santox.crudDEmo.domain.exceptions.StudentNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

@@ -5,8 +5,14 @@ import com.santox.crudDEmo.entity.Student;
 import java.util.List;
 
 public interface StudentService {
-    Student save(Student student);
-    Student findById(int studentId);
-    void deleteStudent(int studentId);
+
+    void saveStudent(Student student);
+
     List<Student> findAll();
+
+    Student findById(int studentId);
+
+    void updateStudent(int studentId, Student student);
+
+    void deleteStudent(int studentId);
 }

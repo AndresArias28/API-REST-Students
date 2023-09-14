@@ -17,6 +17,12 @@ public class restController {
         this.studentService = studentService;
     }
 
+    @PostMapping("/students")
+    public String createStudent(@RequestBody Student student){
+        studentService.saveStudent(student);
+        return "Student saved successfully";
+    }
+
     @GetMapping("/students")
     public List<Student> getStudentList(){
         return studentService.findAll();
@@ -27,6 +33,12 @@ public class restController {
         //verificar el id en la lista de estudiantes
         isPresenId(studentId);
         return studentService.findById(studentId);
+    }
+
+    @PutMapping("/students/{studentId}")
+    public String updateStudent(@PathVariable  int studentId, @RequestBody Student student){
+        studentService.updateStudent(studentId, student);
+        return "Student updated successfully";
     }
 
     @DeleteMapping("/students/{studentId}")
@@ -43,4 +55,7 @@ public class restController {
             throw new StudentNotFoundException("Student ID not found: " + studentId);
         }
     }
+
+
+
 }

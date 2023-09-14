@@ -11,18 +11,18 @@ import java.util.List;
 @Service
 public class StudentServiceImpl implements StudentService {
 
-    private StudentDAO studentDAO;
+    private final StudentDAO studentDAO;
 
     @Autowired
     public StudentServiceImpl(StudentDAO studentDAO) {
         this.studentDAO = studentDAO;
     }
 
-    @Transactional
+/*    @Transactional
     @Override
     public Student save(Student student) {
         return studentDAO.save(student);
-    }
+    }*/
 
     @Override
     public Student findById(int studentId) {
@@ -39,6 +39,16 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public List<Student> findAll() {
         return studentDAO.findAll();
+    }
+
+    @Override
+    public void saveStudent(Student student) {
+        studentDAO.save(student);
+    }
+
+    @Override
+    public void updateStudent(int id, Student student) {
+        studentDAO.updateStudent(id, student);
     }
 }
 

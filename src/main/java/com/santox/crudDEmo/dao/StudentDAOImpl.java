@@ -23,8 +23,8 @@ public class StudentDAOImpl implements StudentDAO {
 
     @Transactional
     @Override
-    public Student save(Student student) {
-       return entityManager.merge(student);
+    public void save(Student student) {
+        entityManager.merge(student);
     }
 
     @Override
@@ -39,17 +39,22 @@ public class StudentDAOImpl implements StudentDAO {
         return query.getResultList();
     }
 
-    @Override
+  /*  @Override
     public List<Student> findByLastName(String lastName) {
         TypedQuery<Student> query = entityManager.createQuery("FROM Student WHERE lastName=:data", Student.class);//seleccionar estudiante por apellido
         query.setParameter("data", lastName);
         return query.getResultList();
-    }
+    }*/
 
     @Override
     @Transactional//personalizando una actualizacion. en caso de presentar una excepción, con esta anoctacion se garantiza que cualquier cambio en la BD se revierta automaticamente
-    public void updateStudent(Student student) {
-        entityManager.merge(student);
+    public String updateStudent(int id, Student student) {
+        Student updateStudent = entityManager.find(Student.class, id);
+        updateStudent.setName(student.getName());
+        updateStudent.setEmail(student.getEmail());
+        updateStudent.setLastName(student.getLastName());
+        entityManager.merge(updateStudent);
+        return "Student successfully updated";
     }
 
     @Transactional
@@ -59,14 +64,12 @@ public class StudentDAOImpl implements StudentDAO {
         Student student = entityManager.find(Student.class, id);
         //eliminar el estudiante
         entityManager.remove(student);
-
     }
 
-    @Override
+/*    @Override
     @Transactional
     public int deleteAllStudent() {
         return entityManager.createQuery("DELETE FROM Student").executeUpdate();
-    }
-
+    }*/
 
 }

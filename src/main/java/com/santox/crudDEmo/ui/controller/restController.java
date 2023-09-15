@@ -2,7 +2,7 @@ package com.santox.crudDEmo.ui.controller;
 
 import com.santox.crudDEmo.application.exceptions.Verification;
 import com.santox.crudDEmo.domain.entity.Student;
-import com.santox.crudDEmo.application.StudentService;
+import com.santox.crudDEmo.application.service.StudentService;
 import com.santox.crudDEmo.application.exceptions.StudentNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +33,8 @@ public class restController {
     @GetMapping("/students/{studentId}")
     public Student getStudentById(@PathVariable int studentId){
         //verificar el id en la lista de estudiantes
-        isPresenId(studentId);
+        Verification ver = new Verification(studentService);
+        ver.isPresenId(studentId);
         return studentService.findById(studentId);
     }
 
@@ -45,7 +46,6 @@ public class restController {
 
     @DeleteMapping("/students/{studentId}")
     public String deleteStudentByStudentId(@PathVariable int studentId){
-
         Verification ver = new Verification(studentService);
         ver.isPresenId(studentId);
         //isPresenId(studentId);
@@ -53,11 +53,9 @@ public class restController {
         return "Student deleted";
     }
 
-    private void isPresenId(int studentId) {
-        List<Student> studentsList = studentService.findAll();
-        boolean foundStudent = studentsList.stream().anyMatch(student -> student.getId() == studentId);
-        if(!foundStudent){
-            throw new StudentNotFoundException("Student ID not found: " + studentId);
-        }
+    @GetMapping("/students/ln{lastName}")
+    public List<Student> getStudentsbyLastName(@PathVariable String lastName){
+        return studentService.findByLastName(lastName);
     }
+
 }

@@ -1,4 +1,4 @@
-package com.santox.crudDEmo.application;
+package com.santox.crudDEmo.application.service;
 
 import com.santox.crudDEmo.domain.entity.Student;
 import com.santox.crudDEmo.domain.entity.StudentDAO;
@@ -18,12 +18,6 @@ public class StudentServiceImpl implements StudentService {
         this.studentDAO = studentDAO;
     }
 
-/*    @Transactional
-    @Override
-    public Student save(Student student) {
-        return studentDAO.save(student);
-    }*/
-
     @Override
     public Student findById(int studentId) {
         return studentDAO.findById(studentId);
@@ -33,6 +27,11 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public void deleteStudent(int studentId) {
         studentDAO.deleteStudent(studentId);
+    }
+
+    @Override
+    public List<Student> findByLastName(String lastName) {
+        return studentDAO.findByLastName(lastName);
     }
 
     @Override

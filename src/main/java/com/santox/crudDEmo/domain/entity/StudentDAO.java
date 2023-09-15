@@ -1,7 +1,5 @@
 package com.santox.crudDEmo.domain.entity;
 
-import com.santox.crudDEmo.domain.entity.Student;
-
 import java.util.List;
 
 public interface StudentDAO {
@@ -12,12 +10,10 @@ public interface StudentDAO {
 
     List<Student> findAll();
 
-    //List<Student> findByLastName(String lastName);
-
-    String updateStudent(int id, Student student);
+    void updateStudent(int id, Student student);
 
     void deleteStudent(int id);
 
-    //int deleteAllStudent();
+    List<Student> findByLastName(String lastName);
 
 }

@@ -1,6 +1,6 @@
 package com.santox.crudDEmo.application.exceptions;
 
-import com.santox.crudDEmo.application.StudentService;
+import com.santox.crudDEmo.application.service.StudentService;
 import com.santox.crudDEmo.domain.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 

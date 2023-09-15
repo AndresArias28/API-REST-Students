@@ -1,4 +1,4 @@
-package com.santox.crudDEmo.application;
+package com.santox.crudDEmo.application.service;
 
 import com.santox.crudDEmo.domain.entity.Student;
 
@@ -15,4 +15,7 @@ public interface StudentService {
     void updateStudent(int studentId, Student student);
 
     void deleteStudent(int studentId);
+
+    List<Student> findByLastName(String lastName);
+
 }

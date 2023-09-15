@@ -1,6 +1,6 @@
 package com.santox.crudDEmo.Infrastructure;
 
-import com.santox.crudDEmo.domain.StudentDAO;
+import com.santox.crudDEmo.domain.entity.StudentDAO;
 import com.santox.crudDEmo.domain.entity.Student;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;

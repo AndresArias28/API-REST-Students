@@ -1,8 +1,9 @@
-package com.santox.crudDEmo.domain.controller;
+package com.santox.crudDEmo.ui.controller;
 
+import com.santox.crudDEmo.application.exceptions.Verification;
 import com.santox.crudDEmo.domain.entity.Student;
-import com.santox.crudDEmo.domain.StudentService;
-import com.santox.crudDEmo.domain.exceptions.StudentNotFoundException;
+import com.santox.crudDEmo.application.StudentService;
+import com.santox.crudDEmo.application.exceptions.StudentNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,7 +45,10 @@ public class restController {
 
     @DeleteMapping("/students/{studentId}")
     public String deleteStudentByStudentId(@PathVariable int studentId){
-        isPresenId(studentId);
+
+        Verification ver = new Verification(studentService);
+        ver.isPresenId(studentId);
+        //isPresenId(studentId);
         studentService.deleteStudent(studentId);
         return "Student deleted";
     }
@@ -56,7 +60,4 @@ public class restController {
             throw new StudentNotFoundException("Student ID not found: " + studentId);
         }
     }
-
-
-
 }

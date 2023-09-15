@@ -1,8 +1,7 @@
 package com.santox.crudDEmo.application;
 
-import com.santox.crudDEmo.domain.StudentDAO;
-import com.santox.crudDEmo.domain.StudentService;
 import com.santox.crudDEmo.domain.entity.Student;
+import com.santox.crudDEmo.domain.entity.StudentDAO;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.santox.crudDEmo.domain;
+package com.santox.crudDEmo.domain.entity;
 
 import com.santox.crudDEmo.domain.entity.Student;
 

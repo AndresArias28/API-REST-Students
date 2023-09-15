@@ -1,7 +1,5 @@
-package com.santox.crudDEmo.domain.exceptions;
+package com.santox.crudDEmo.application.exceptions;
 
-import com.santox.crudDEmo.domain.exceptions.StudentErrorResponse;
-import com.santox.crudDEmo.domain.exceptions.StudentNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

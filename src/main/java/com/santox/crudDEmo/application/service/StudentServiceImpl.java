@@ -1,28 +1,35 @@
 package com.santox.crudDEmo.application.service;
 
+import com.santox.crudDEmo.Infrastructure.StudentRepository;
 import com.santox.crudDEmo.domain.entity.Student;
-import com.santox.crudDEmo.domain.entity.StudentDAO;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StudentServiceImpl implements StudentService {
 
-    private final StudentDAO studentDAO;
+    private final StudentRepository studentRepo;
 
     @Autowired
-    public StudentServiceImpl(StudentDAO studentDAO) {
-        this.studentDAO = studentDAO;
+    public StudentServiceImpl(StudentRepository studentRepo)
+    {
+        this.studentRepo = studentRepo;
     }
 
     @Override
-    public Student findById(int studentId) {
-        return studentDAO.findById(studentId);
+    public Optional<Student> findById(int studentId) {
+        return studentRepo.findById(studentId);
     }
 
+    @Override
+    public List<Student> findAll() {
+        return studentRepo.findAll();
+    }
+/*
     @Transactional
     @Override
     public void deleteStudent(int studentId) {
@@ -34,10 +41,6 @@ public class StudentServiceImpl implements StudentService {
         return studentDAO.findByLastName(lastName);
     }
 
-    @Override
-    public List<Student> findAll() {
-        return studentDAO.findAll();
-    }
 
     @Override
     public void saveStudent(Student student) {
@@ -47,7 +50,7 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public void updateStudent(int id, Student student) {
         studentDAO.updateStudent(id, student);
-    }
+    }*/
 }
 
 

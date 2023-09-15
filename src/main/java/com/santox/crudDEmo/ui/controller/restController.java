@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class restController {
@@ -19,11 +20,11 @@ public class restController {
         this.studentService = studentService;
     }
 
-    @PostMapping("/students")
+    /*@PostMapping("/students")
     public String createStudent(@RequestBody Student student){
         studentService.saveStudent(student);
         return "Student saved successfully";
-    }
+    }*/
 
     @GetMapping("/students")
     public List<Student> getStudentList(){
@@ -31,13 +32,13 @@ public class restController {
     }
 
     @GetMapping("/students/{studentId}")
-    public Student getStudentById(@PathVariable int studentId){
+    public Optional<Student> getStudentById(@PathVariable int studentId){
         //verificar el id en la lista de estudiantes
         Verification ver = new Verification(studentService);
         ver.isPresenId(studentId);
         return studentService.findById(studentId);
     }
-
+/*
     @PutMapping("/students/{studentId}")
     public String updateStudent(@PathVariable  int studentId, @RequestBody Student student){
         studentService.updateStudent(studentId, student);
@@ -56,6 +57,6 @@ public class restController {
     @GetMapping("/students/ln{lastName}")
     public List<Student> getStudentsbyLastName(@PathVariable String lastName){
         return studentService.findByLastName(lastName);
-    }
+    }*/
 
 }
